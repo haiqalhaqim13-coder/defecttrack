@@ -154,16 +154,9 @@ export default function DefectTrackApp() {
     setLoading(true);
 
     try {
-      // Generate defect number
-      const now = new Date();
-      const dateStr = now.toISOString().split('T')[0].replace(/-/g, '');
-      const randomNum = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-      const defectNumber = `DEF-${dateStr}-${randomNum}`;
-
       const { data, error } = await supabase
         .from('defects')
         .insert([{
-          defect_number: defectNumber,
           location: formData.location,
           issue_description: formData.issue_description,
           priority: formData.priority,
